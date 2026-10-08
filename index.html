@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Backlog Audiovisual | Alumia Educacional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- IDENTIDADE VISUAL ALUMIA EDUCACIONAL --- */
+        :root {
+            --alumia-navy: #0F172A;
+            --alumia-card-bg: #1E293B;
+            --alumia-input-bg: #0F172A;
+            --alumia-border: #334155;
+            --alumia-cyan: #0EA5E9;
+            --alumia-blue: #6366F1;
+            --alumia-teal: #14B8A6;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --danger-red: #EF4444;
+            --glow-cyan: rgba(14, 165, 233, 0.25);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--alumia-navy);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 30px 15px;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.12) 0px, transparent 50%);
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        /* --- CABEÇALHO ALUMIA --- */
+        .header-card {
+            background-color: var(--alumia-card-bg);
+            border: 1px solid var(--alumia-border);
+            border-radius: 20px;
+            padding: 35px 30px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .header-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--alumia-cyan), var(--alumia-blue), var(--alumia-teal));
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .logo-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #38BDF8 0%, #818CF8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-badge {
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: #38BDF8;
+            background: rgba(14, 165, 233, 0.12);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header-card h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .header-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .req-notice {
+            color: #38BDF8;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 15px;
+            display: block;
+        }
+
+        /* --- CARDS DE SEÇÃO --- */
+        .section-card {
+            background-color: var(--alumia-card-bg);
+            border: 1px solid var(--alumia-border);
+            border-radius: 16px;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .section-card:focus-within {
+            border-color: var(--alumia-cyan);
+            box-shadow: 0 0 20px var(--glow-cyan);
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .req { color: var(--danger-red); margin-left: 3px; }
+
+        /* --- CONTROLES DE ENTRADA --- */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .input-control {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            border: 1px solid var(--alumia-border);
+            border-radius: 10px;
+            outline: none;
+            font-family: inherit;
+            color: var(--text-primary);
+            background-color: var(--alumia-input-bg);
+            transition: all 0.2s ease;
+        }
+
+        .input-control:focus {
+            border-color: var(--alumia-cyan);
+            box-shadow: 0 0 0 3px var(--glow-cyan);
+        }
+
+        .input-control::placeholder {
+            color: #64748B;
+        }
+
+        /* --- GRID DE PILHAS (SELEÇÕES RÁPIDAS) --- */
+        .pill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .pill-grid-wide {
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        }
+
+        .pill-option {
+            position: relative;
+        }
+
+        .pill-option input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0; width: 0;
+        }
+
+        .pill-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 12px 10px;
+            background-color: var(--alumia-input-bg);
+            border: 1px solid var(--alumia-border);
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            height: 100%;
+        }
+
+        .pill-option input:checked + .pill-label {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(99, 102, 241, 0.2));
+            border-color: var(--alumia-cyan);
+            color: #38BDF8;
+            font-weight: 700;
+            box-shadow: 0 4px 14px var(--glow-cyan);
+        }
+
+        .pill-label:hover {
+            border-color: var(--alumia-cyan);
+            color: var(--text-primary);
+        }
+
+        /* --- LISTAS DE CHECKBOX / RADIO --- */
+        .checkbox-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 10px;
+        }
+
+        .custom-check {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--alumia-input-bg);
+            border: 1px solid var(--alumia-border);
+            padding: 14px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: all 0.2s;
+        }
+
+        .custom-check:hover {
+            border-color: var(--alumia-cyan);
+            background-color: #162032;
+        }
+
+        .custom-check input[type="checkbox"],
+        .custom-check input[type="radio"] {
+            accent-color: var(--alumia-cyan);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        /* --- BOTÃO ENVIAR --- */
+        .btn-submit {
+            background: linear-gradient(135deg, var(--alumia-cyan) 0%, var(--alumia-blue) 100%);
+            color: #FFFFFF;
+            border: none;
+            padding: 16px 30px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.3);
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.45);
+        }
+
+        /* --- CAMPOS DINÂMICOS --- */
+        .hidden-field {
+            display: none;
+            margin-top: 10px;
+        }
+
+        /* --- RODAPÉ --- */
+        .screen-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding-top: 20px;
+            border-top: 1px solid var(--alumia-border);
+            margin-top: 10px;
+        }
+
+        .footer-brand {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        .footer-brand span {
+            color: var(--alumia-cyan);
+        }
+
+        .signature-box { text-align: right; }
+        .signature-box p { font-size: 11px; color: var(--text-secondary); }
+        .signature-box span {
+            display: block;
+            margin-top: 2px;
+            font-size: 12px;
+            color: var(--text-primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .header-card h1 { font-size: 24px; }
+            .pill-grid { grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); }
+            .checkbox-list { grid-template-columns: 1fr; }
+            .screen-footer { flex-direction: column; gap: 15px; text-align: center; }
+            .signature-box { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+
+        <form class="form-container" id="backlogForm" onsubmit="handleFormSubmit(event)">
+            
+            <!-- CABEÇALHO -->
+            <div class="header-card">
+                <div class="brand-header">
+                    <div class="logo-text">alumia</div>
+                    <span class="brand-badge">Educacional</span>
+                </div>
+                <h1>Backlog Audiovisual</h1>
+                <p>Registro e acompanhamento de solicitações para a equipe e o estagiário de audiovisual.</p>
+                <span class="req-notice">* Indica uma pergunta obrigatória</span>
+            </div>
+
+            <!-- 1. E-MAIL -->
+            <div class="section-card">
+                <div class="form-group">
+                    <label for="email">1. E-mail <span class="req">*</span></label>
+                    <input type="email" id="email" class="input-control" placeholder="seu.email@alumia.com.br" required>
+                </div>
+            </div>
+
+            <!-- 2. SOLICITANTE -->
+            <div class="section-card">
+                <div class="form-group">
+                    <label>2. Solicitante <span class="req">*</span></label>
+                    <div class="pill-grid">
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Alê" required onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Alê</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Bia" onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Bia</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Carla" onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Carla</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Cíntia" onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Cíntia</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Emy" onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Emy</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Isa" onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Isa</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Lary" onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Lary</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Léo" onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Léo</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Lucas A." onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Lucas A.</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Lucas M" onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Lucas M</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Lucas V." onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Lucas V.</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Melqui" onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Melqui</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Rê" onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Rê</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Vania" onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Vania</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Victor" onclick="toggleOutroSolicitante(false)">
+                            <span class="pill-label">Victor</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="solicitante" value="Outro" onclick="toggleOutroSolicitante(true)">
+                            <span class="pill-label">Outro</span>
+                        </label>
+                    </div>
+                    <div id="solicitante_outro_container" class="hidden-field">
+                        <input type="text" id="solicitante_outro" class="input-control" placeholder="Especifique o nome do solicitante">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. IES E CURSO -->
+            <div class="section-card">
+                <div class="form-group">
+                    <label>3. IES e Curso <span class="req">*</span></label>
+                    <div class="pill-grid pill-grid-wide">
+                        <label class="pill-option">
+                            <input type="radio" name="ies_curso" value="ESPM DMI" required>
+                            <span class="pill-label">ESPM DMI</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="ies_curso" value="ESPM Flow">
+                            <span class="pill-label">ESPM Flow</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="ies_curso" value="ESPM MDA">
+                            <span class="pill-label">ESPM MDA</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="ies_curso" value="ESPM UX">
+                            <span class="pill-label">ESPM UX</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="ies_curso" value="FMP Prep">
+                            <span class="pill-label">FMP Prep</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="ies_curso" value="HAOC Ext">
+                            <span class="pill-label">HAOC Ext</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="ies_curso" value="HAOC Pós">
+                            <span class="pill-label">HAOC Pós</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="ies_curso" value="Trevisan Pós">
+                            <span class="pill-label">Trevisan Pós</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="ies_curso" value="Trevisan Ext">
+                            <span class="pill-label">Trevisan Ext</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="ies_curso" value="Sing Pós">
+                            <span class="pill-label">Sing Pós</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="ies_curso" value="Sing Ext">
+                            <span class="pill-label">Sing Ext</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="ies_curso" value="Mauá Pós">
+                            <span class="pill-label">Mauá Pós</span>
+                        </label>
+                        <label class="pill-option">
+                            <input type="radio" name="ies_curso" value="Mauá Ext">
+                            <span class="pill-label">Mauá Ext</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. ATIVIDADE -->
+            <div class="section-card">
+                <div class="form-group">
+                    <label>4. Atividade (marque todas que se aplicam) <span class="req">*</span></label>
+                    <div class="checkbox-list">
+                        <label class="custom-check">
+                            <input type="checkbox" name="atividade" value="Ajuste de Planilha Vímeo">
+                            Ajuste de Planilha Vímeo
+                        </label>
+                        <label class="custom-check">
+                            <input type="checkbox" name="atividade" value="Edição (Correções)">
+                            Edição (Correções)
+                        </label>
+                        <label class="custom-check">
+                            <input type="checkbox" name="atividade" value="Edição (1º corte)">
+                            Edição (1º corte)
+                        </label>
+                        <label class="custom-check">
+                            <input type="checkbox" name="atividade" value="Edição (2º corte)">
+                            Edição (2º corte)
+                        </label>
+                        <label class="custom-check">
+                            <input type="checkbox" name="atividade" value="Live (Edição Padrão)">
+                            Live (Edição Padrão)
+                        </label>
+                        <label class="custom-check">
+                            <input type="checkbox" name="atividade" value="Transcrição de videoaula">
+                            Transcrição de videoaula
+                        </label>
+                        <label class="custom-check">
+                            <input type="checkbox" name="atividade" value="Upload Vímeo">
+                            Upload Vímeo
+                        </label>
+                        <label class="custom-check">
+                            <input type="checkbox" name="atividade" value="Uploads de Gravações">
+                            Uploads de Gravações
+                        </label>
+                        <label class="custom-check">
+                            <input type="checkbox" name="atividade" value="Capa para cursos">
+                            Capa para cursos
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. MODELO DE AULA -->
+            <div class="section-card">
+                <div class="form-group">
+                    <label>5. Modelo de Aula <span class="req">*</span></label>
+                    <div class="checkbox-list">
+                        <label class="custom-check">
+                            <input type="radio" name="modelo_aula" value="Aula Assíncrona (gravada)" required>
+                            Aula Assíncrona (gravada)
+                        </label>
+                        <label class="custom-check">
+                            <input type="radio" name="modelo_aula" value="Aula Síncrona Regular (ao vivo)">
+                            Aula Síncrona Regular (ao vivo)
+                        </label>
+                        <label class="custom-check">
+                            <input type="radio" name="modelo_aula" value="Ciclo de Palestras">
+                            Ciclo de Palestras
+                        </label>
+                        <label class="custom-check">
+                            <input type="radio" name="modelo_aula" value="Conferência">
+                            Conferência
+                        </label>
+                        <label class="custom-check">
+                            <input type="radio" name="modelo_aula" value="Encontro com Especialista">
+                            Encontro com Especialista
+                        </label>
+                        <label class="custom-check">
+                            <input type="radio" name="modelo_aula" value="MasterClass">
+                            MasterClass
+                        </label>
+                        <label class="custom-check">
+                            <input type="radio" name="modelo_aula" value="Mentoria">
+                            Mentoria
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. PROFESSOR (ORDEM ALFABÉTICA) -->
+            <div class="section-card">
+                <div class="form-group">
+                    <label>6. Professor <span class="req">*</span></label>
+                    <div class="checkbox-list">
+                        <label class="custom-check">
+                            <input type="radio" name="professor" value="André de Oliveira Braga" required onclick="toggleOutroProf(false)">
+                            André de Oliveira Braga
+                        </label>
+                        <label class="custom-check">
+                            <input type="radio" name="professor" value="Edilberto de Souza Alves" onclick="toggleOutroProf(false)">
+                            Edilberto de Souza Alves
+                        </label>
+                        <label class="custom-check">
+                            <input type="radio" name="professor" value="Luan Mateus Meireles Ferreira Quintino" onclick="toggleOutroProf(false)">
+                            Luan Mateus Meireles Ferreira Quintino
+                        </label>
+                        <label class="custom-check">
+                            <input type="radio" name="professor" value="Roberto Rodrigues Junior" onclick="toggleOutroProf(false)">
+                            Roberto Rodrigues Junior
+                        </label>
+                        <label class="custom-check">
+                            <input type="radio" name="professor" value="Robson Leonel Anacleto" onclick="toggleOutroProf(false)">
+                            Robson Leonel Anacleto
+                        </label>
+                        <label class="custom-check">
+                            <input type="radio" name="professor" value="Outro" onclick="toggleOutroProf(true)">
+                            Outro
+                        </label>
+                    </div>
+                    <div id="prof_outro_container" class="hidden-field">
+                        <input type="text" id="professor_outro" class="input-control" placeholder="Digite o nome do professor">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. LINK E 8. DATA -->
+            <div class="section-card">
+                <div class="form-group">
+                    <label for="link_materia">7. Link <span class="req">*</span></label>
+                    <input type="url" id="link_materia" class="input-control" placeholder="https://drive.google.com/... ou https://vimeo.com/..." required>
+                </div>
+
+                <div class="form-group" style="margin-top: 10px;">
+                    <label for="data_entrega">8. Data do evento ou da entrega <span class="req">*</span></label>
+                    <input type="date" id="data_entrega" class="input-control" required>
+                </div>
+            </div>
+
+            <!-- SUBMIT -->
+            <button type="submit" class="btn-submit">Enviar para o Backlog</button>
+
+            <!-- RODAPÉ -->
+            <div class="screen-footer">
+                <div class="footer-brand">alumia <span>Educacional</span></div>
+                <div class="signature-box">
+                    <p>Desenvolvido por</p>
+                    <span>OPM Alumia Aliança 3</span>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        // URL gerada na implantação do Google Apps Script
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyDgRkf9sTgjyo95BEHdJPvTNPgJ5CNDQUlJK4ovVziIYNbLxnojoxJF7xQ7wJB85Ao/exec';
+
+        function toggleOutroSolicitante(show) {
+            const container = document.getElementById('solicitante_outro_container');
+            const input = document.getElementById('solicitante_outro');
+            if (show) {
+                container.style.display = 'block';
+                input.required = true;
+                input.focus();
+            } else {
+                container.style.display = 'none';
+                input.required = false;
+                input.value = '';
+            }
+        }
+
+        function toggleOutroProf(show) {
+            const container = document.getElementById('prof_outro_container');
+            const input = document.getElementById('professor_outro');
+            if (show) {
+                container.style.display = 'block';
+                input.required = true;
+                input.focus();
+            } else {
+                container.style.display = 'none';
+                input.required = false;
+                input.value = '';
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            // Validação de Atividades (Pelo menos uma selecionada)
+            const atividadesChecked = Array.from(document.querySelectorAll('input[name="atividade"]:checked')).map(cb => cb.value);
+            if (atividadesChecked.length === 0) {
+                alert('Por favor, selecione ao menos uma Atividade.');
+                return;
+            }
+
+            // Tratamento do Solicitante (Se for "Outro", pega o valor digitado no campo de texto)
+            const solicitanteRadio = document.querySelector('input[name="solicitante"]:checked');
+            let solicitanteValor = solicitanteRadio ? solicitanteRadio.value : '';
+            if (solicitanteValor === 'Outro') {
+                solicitanteValor = document.getElementById('solicitante_outro').value;
+            }
+
+            // Tratamento do Professor (Se for "Outro", pega o valor digitado no campo de texto)
+            const professorRadio = document.querySelector('input[name="professor"]:checked');
+            let professorValor = professorRadio ? professorRadio.value : '';
+            if (professorValor === 'Outro') {
+                professorValor = document.getElementById('professor_outro').value;
+            }
+
+            // Captura do Tipo de IES/Curso e Modelo de Aula
+            const iesCursoRadio = document.querySelector('input[name="ies_curso"]:checked');
+            const modeloAulaRadio = document.querySelector('input[name="modelo_aula"]:checked');
+
+            // Montagem do objeto com os dados
+            const payload = {
+                email: document.getElementById('email').value,
+                solicitante: solicitanteValor,
+                ies_curso: iesCursoRadio ? iesCursoRadio.value : '',
+                atividade: atividadesChecked.join(', '),
+                modelo_aula: modeloAulaRadio ? modeloAulaRadio.value : '',
+                professor: professorValor,
+                link_materia: document.getElementById('link_materia').value,
+                data_entrega: document.getElementById('data_entrega').value
+            };
+
+            // Alteração de estado do botão durante o envio
+            const submitBtn = document.querySelector('.btn-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+
+            // Envio para o Google Apps Script
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                alert('Solicitação cadastrada com sucesso no Backlog Audiovisual da Alumia Educacional!');
+                document.getElementById('backlogForm').reset();
+                toggleOutroSolicitante(false);
+                toggleOutroProf(false);
+            })
+            .catch(error => {
+                console.error('Erro no envio:', error);
+                alert('Ocorreu um erro ao cadastrar a solicitação. Tente novamente.');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            });
+        }
+    </script>
+</body>
+</html>

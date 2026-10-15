@@ -624,15 +624,23 @@
                 </div>
             </div>
 
-            <!-- 7. LINK E 8. DATA -->
+            <!-- 7. DESCRIÇÃO DA SOLICITAÇÃO -->
             <div class="section-card">
                 <div class="form-group">
-                    <label for="link_materia">7. Link <span class="req">*</span></label>
+                    <label for="descricao_solicitacao">7. Descrição da solicitação</label>
+                    <textarea id="descricao_solicitacao" class="input-control" rows="4" placeholder="Descreva detalhes ou orientações adicionais (opcional)"></textarea>
+                </div>
+            </div>
+
+            <!-- 8. LINK E 9. DATA -->
+            <div class="section-card">
+                <div class="form-group">
+                    <label for="link_materia">8. Link <span class="req">*</span></label>
                     <input type="url" id="link_materia" class="input-control" placeholder="https://drive.google.com/... ou https://vimeo.com/..." required>
                 </div>
 
                 <div class="form-group" style="margin-top: 10px;">
-                    <label for="data_entrega">8. Data do evento ou da entrega <span class="req">*</span></label>
+                    <label for="data_entrega">9. Data do evento ou da entrega <span class="req">*</span></label>
                     <input type="date" id="data_entrega" class="input-control" required>
                 </div>
             </div>
@@ -721,7 +729,8 @@
                 modelo_aula: modeloAulaRadio ? modeloAulaRadio.value : '',
                 professor: professorValor,
                 link_materia: document.getElementById('link_materia').value,
-                data_entrega: document.getElementById('data_entrega').value
+                data_entrega: document.getElementById('data_entrega').value,
+                descricao_solicitacao: document.getElementById('descricao_solicitacao').value
             };
 
             // Alteração de estado do botão durante o envio
